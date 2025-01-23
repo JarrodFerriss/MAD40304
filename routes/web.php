@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,3 +57,9 @@ Route::get('contact', function () {
     $email = 'jarrodferriss@gmail.com';
     return view('pages/contact') -> with('email', $email);
 }) -> name('pages/contact');
+
+/* Assignment 3A + 3C */
+// 12.
+Route::get('articles', [ArticleController::class, 'index']) -> name('articles.index');
+// 14.
+Route::get('articles/{article}', [ArticleController::class, 'show']) -> name('articles.show');
