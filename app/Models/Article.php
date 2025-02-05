@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 
 /* Assignment 3C */
 
 class Article extends Model {
-    use HasFactory;
-    // 27.
-    public function show(Article $article) {
-        return view('articles.show', compact('article'));
+
+    /* Assignment 4 */
+    public function category() {
+        return $this->belongsTo(Category::class);
     }
 }

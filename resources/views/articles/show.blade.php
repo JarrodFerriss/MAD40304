@@ -14,4 +14,7 @@
     SCP Designation: {{ $article->name }} <br>
     SCP Containment: {{ $article->body }} <br>
     Author ID: {{ $article->author_id }} <br><br>
+
+    SCP Object Class Designation: {{ $article->category->name ?? 'Unknown Category' }}<br>
+    SCP Object Class Description: {{ $article->category->description ?? 'No description available.' }}<br>
 @endsection

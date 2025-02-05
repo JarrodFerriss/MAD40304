@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 
@@ -63,3 +64,7 @@ Route::get('contact', function () {
 Route::get('articles', [ArticleController::class, 'index']) -> name('articles.index');
 // 14.
 Route::get('articles/{article}', [ArticleController::class, 'show']) -> name('articles.show');
+
+/* Assignment 4 */
+Route::get('categories', [CategoryController::class, 'index']) -> name('categories.index');
+Route::get('categories/{category}', [CategoryController::class, 'show']) -> name('categories.show');

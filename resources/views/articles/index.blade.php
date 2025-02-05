@@ -4,7 +4,7 @@
 @extends('master')
 
 <!-- 17. -->
-@section('title', 'Article')
+@section('title', 'Articles')
 
 @section('content')
     <!-- 9. -->
