@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -19,17 +20,23 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    // Assignment 5
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    /* Assignment 5 */
+    public function store(CategoryRequest $request)
     {
-        //
+        $formData = $request->all();
+
+        Category::create($formData);
+
+        return redirect('categories');
     }
 
     /**

@@ -59,12 +59,19 @@ Route::get('contact', function () {
     return view('pages/contact') -> with('email', $email);
 }) -> name('pages/contact');
 
+
+/* Assignment 5 */
+Route::get('articles/create', [ArticleController::class, 'create']) -> name('articles.create');
+Route::post('articles', [ArticleController::class, 'store']) -> name('articles.store');
 /* Assignment 3A + 3C */
 // 12.
 Route::get('articles', [ArticleController::class, 'index']) -> name('articles.index');
 // 14.
 Route::get('articles/{article}', [ArticleController::class, 'show']) -> name('articles.show');
 
+/* Assignment 5 */
+Route::get('categories/create', [CategoryController::class, 'create']) -> name('categories.create');
+Route::post('categories', [CategoryController::class, 'store']) -> name('categories.store');
 /* Assignment 4 */
 Route::get('categories', [CategoryController::class, 'index']) -> name('categories.index');
 Route::get('categories/{category}', [CategoryController::class, 'show']) -> name('categories.show');
