@@ -8,6 +8,12 @@ use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
+    /* Assignment 6 */
+    public function __construct() {
+        $this->middleware('auth', ['only' => ['create', 'edit']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      */
@@ -51,17 +57,23 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    /* Assignment 6 */
+    public function edit($category)
     {
-        //
+        $category = Category::findOrFail($category);
+        return view('categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    /* Assignment 6 */
+    public function update(CategoryRequest $request, $category)
     {
-        //
+        $formData = $request->all();
+        $category = Category::findOrFail($category);
+        $category->update($formData);
+        return redirect('categories');
     }
 
     /**

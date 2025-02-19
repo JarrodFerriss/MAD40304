@@ -75,3 +75,10 @@ Route::post('categories', [CategoryController::class, 'store']) -> name('categor
 /* Assignment 4 */
 Route::get('categories', [CategoryController::class, 'index']) -> name('categories.index');
 Route::get('categories/{category}', [CategoryController::class, 'show']) -> name('categories.show');
+/* Assignment 6 */
+Route::get('categories/{category}/edit', [CategoryController::class, 'edit']) -> name('categories.edit');
+Route::patch('categories/{category}', [CategoryController::class, 'update']) -> name('categories.update');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
