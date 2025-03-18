@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     /* Assignment 6 */
     public function __construct() {
-        $this->middleware('auth', ['only' => ['create', 'edit']]);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
 
@@ -79,8 +79,47 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy($category)
     {
-        //
+        $category->articles()->delete();
+        Category::destroy($category);
+        return redirect('categories');
+    }
+
+    /**
+     * Display a list of all soft-deleted categories.
+     */
+    public function manage()
+    {
+        $categories = Category::onlyTrashed()->get();
+        return view('categories.manage', compact('categories'));
+    }
+
+    /**
+     * Restore a single soft-deleted category.
+     */
+    public function restore($id)
+    {
+        $category = Category::onlyTrashed()->where('id', $id)->firstOrFail();
+
+        $category->restore();
+
+        Category::findOrFail($category)
+            ->articles()
+            ->restore();
+
+        return redirect('categories');
+    }
+
+    /**
+     * Permanently delete (force delete) a soft-deleted category.
+     */
+    public function forcedelete($id)
+    {
+        $category = Category::onlyTrashed()->where('id', $id)->firstOrFail();
+
+        $category->forceDelete();
+
+        return redirect('categories');
     }
 }

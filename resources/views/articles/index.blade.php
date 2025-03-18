@@ -16,5 +16,13 @@
         SCP Designation: {{ $article->name }} <br>
         SCP Containment: {{ $article->body }} <br>
         Author ID: {{ $article->author_id }} <br><br>
+
+        <form method="POST" action="{{ route('articles.destroy', $article->id) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete</button>
+        </form>
+        <br>
+
     @endforeach
 @endsection

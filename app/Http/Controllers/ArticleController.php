@@ -9,6 +9,11 @@ use App\Models\Category;
 /* Assignment 3A + 3C */
 // 7.
 class ArticleController extends Controller {
+
+    public function __construct() {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     public function index() {
 
         // 20.
@@ -41,6 +46,15 @@ class ArticleController extends Controller {
         $article = new Article($request->all());
         $article->author_id = 1;
         $article->category()->associate($category)->save();
+        return redirect('articles');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($article)
+    {
+        Category::destroy($article);
         return redirect('articles');
     }
 }

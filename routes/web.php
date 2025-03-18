@@ -59,25 +59,39 @@ Route::get('contact', function () {
     return view('pages/contact') -> with('email', $email);
 }) -> name('pages/contact');
 
+Route::get('categories/manage', [CategoryController::class, 'manage']) -> name('categories.manage');
 
-/* Assignment 5 */
-Route::get('articles/create', [ArticleController::class, 'create']) -> name('articles.create');
-Route::post('articles', [ArticleController::class, 'store']) -> name('articles.store');
-/* Assignment 3A + 3C */
-// 12.
-Route::get('articles', [ArticleController::class, 'index']) -> name('articles.index');
-// 14.
-Route::get('articles/{article}', [ArticleController::class, 'show']) -> name('articles.show');
+Route::get('categories/{category}/forcedelete', [CategoryController::class, 'forcedelete'])->name('categories.forcedelete');
 
-/* Assignment 5 */
-Route::get('categories/create', [CategoryController::class, 'create']) -> name('categories.create');
-Route::post('categories', [CategoryController::class, 'store']) -> name('categories.store');
-/* Assignment 4 */
-Route::get('categories', [CategoryController::class, 'index']) -> name('categories.index');
-Route::get('categories/{category}', [CategoryController::class, 'show']) -> name('categories.show');
-/* Assignment 6 */
-Route::get('categories/{category}/edit', [CategoryController::class, 'edit']) -> name('categories.edit');
-Route::patch('categories/{category}', [CategoryController::class, 'update']) -> name('categories.update');
+Route::get('categories/{category}/restore', [CategoryController::class, 'restore'])->name('categories.restore');
+
+Route::resource('articles', ArticleController::class);
+
+///* Assignment 5 */
+//Route::get('articles/create', [ArticleController::class, 'create']) -> name('articles.create');
+//Route::post('articles', [ArticleController::class, 'store']) -> name('articles.store');
+///* Assignment 3A + 3C */
+//// 12.
+//Route::get('articles', [ArticleController::class, 'index']) -> name('articles.index');
+//// 14.
+//Route::get('articles/{article}', [ArticleController::class, 'show']) -> name('articles.show');
+//
+//Route::delete('articles/{article}', [ArticleController::class, 'destroy']) -> name('articles.destroy');
+
+Route::resource('categories', CategoryController::class);
+
+///* Assignment 5 */
+//Route::get('categories/create', [CategoryController::class, 'create']) -> name('categories.create');
+//Route::post('categories', [CategoryController::class, 'store']) -> name('categories.store');
+///* Assignment 4 */
+//Route::get('categories', [CategoryController::class, 'index']) -> name('categories.index');
+//Route::get('categories/{category}', [CategoryController::class, 'show']) -> name('categories.show');
+//
+//Route::delete('categories/{category}', [CategoryController::class, 'destroy']) -> name('categories.destroy');
+//
+///* Assignment 6 */
+//Route::get('categories/{category}/edit', [CategoryController::class, 'edit']) -> name('categories.edit');
+//Route::patch('categories/{category}', [CategoryController::class, 'update']) -> name('categories.update');
 
 Auth::routes();
 

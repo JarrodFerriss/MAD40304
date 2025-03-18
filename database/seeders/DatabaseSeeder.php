@@ -2,22 +2,24 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Nette\Schema\Schema;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        Schema::disableForeignKeyConstraints();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        \App\Models\User::factory(10)->create();
+
+        DB::table('categories')->truncate();
+        $this->call(CategorySeeder::class);
+
+        DB::table('articles')->truncate();
+        $this->call(ArticleSeeder::class);
+
+        Schema::enableForeignKeyConstraints();
     }
 }
