@@ -20,9 +20,14 @@
         <form method="POST" action="{{ route('articles.destroy', $article->id) }}">
             @csrf
             @method('DELETE')
-            <button type="submit">Delete</button>
+            <button type="submit" onclick="return confirm('Are you sure you want to delete this article?')">
+                Delete
+            </button>
         </form>
         <br>
 
     @endforeach
+
+    {{ $articles->links() }}
+
 @endsection

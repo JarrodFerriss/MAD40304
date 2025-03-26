@@ -7,20 +7,14 @@
     <h1> Create New Category </h1>
 
     <form method="POST" action="{{ route('categories.store') }}">
-        @csrf
-
-        <label for="name">SCP Object Class Designation: </label>
-        <input name="name" type="text"><br>
-        <label for="description">SCP Object Class Designation Description: </label>
-        <input name="description" type="text"><br>
-        <input type="submit" value="Submit"><br>
+        @include('partials.categoriesForm', [
+            'buttonName' => 'Create',
+            'name' => old('name'),
+            'description' => old('description')
+        ])
     </form>
 
-    @if ($errors->any())
-        @foreach($errors->all() as $error)
-            {{ $error }}<br>
-        @endforeach
-    @endif
+    @include('partials.errors')
 
 @endsection
 

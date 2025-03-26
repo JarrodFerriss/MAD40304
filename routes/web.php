@@ -67,6 +67,8 @@ Route::get('categories/{category}/restore', [CategoryController::class, 'restore
 
 Route::resource('articles', ArticleController::class);
 
+Route::delete('articles/{article}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+
 ///* Assignment 5 */
 //Route::get('articles/create', [ArticleController::class, 'create']) -> name('articles.create');
 //Route::post('articles', [ArticleController::class, 'store']) -> name('articles.store');

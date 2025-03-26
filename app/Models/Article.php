@@ -12,12 +12,14 @@ class Article extends Model
 
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        "name",
-        "body"
-    ];
+    protected $fillable = ['name', 'body', 'author_id', 'file'];
 
     public function category() {
         return $this->belongsTo(Category::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 }

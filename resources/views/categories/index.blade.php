@@ -19,4 +19,7 @@
         <br>
 
     @endforeach
+
+    {{ $categories->links() }}
+
 @endsection

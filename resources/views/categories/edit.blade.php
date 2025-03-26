@@ -8,21 +8,13 @@
 
     <form method="POST" action="{{ route('categories.update', $category->id) }}">
         @method('PATCH')
-        @csrf
-
-        <label for="name">SCP Object Class Designation: </label>
-        <input name="name" type="text"
-            value="{{ $category->name }}"><br>
-        <label for="description">SCP Object Class Designation Description: </label>
-        <input name="description" type="text"
-            value="{{ $category->description }}"><br>
-        <input type="submit" value="Submit"><br>
+        @include('partials.categoriesForm', [
+            'buttonName' => 'Update',
+            'name' => $category->name,
+            'description' => $category->description
+        ])
     </form>
 
-    @if ($errors->any())
-        @foreach($errors->all() as $error)
-            {{ $error }}<br>
-        @endforeach
-    @endif
+    @include('partials.errors')
 
 @endsection
