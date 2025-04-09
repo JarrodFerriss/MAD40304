@@ -22,8 +22,8 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:5|unique:categories,name' . $this->segment(2),
-            'description' => 'required|min:8'
+            'name' => 'required|string|min:3',
+            'description' => 'nullable|string',
         ];
     }
 }
